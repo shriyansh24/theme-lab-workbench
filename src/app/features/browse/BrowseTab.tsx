@@ -20,20 +20,9 @@ interface BrowseTabProps {
 }
 
 export function BrowseTab({
-  allThemes,
-  themeNames,
-  screen,
-  onScreenChange,
-  screens,
-  filterSource,
-  onFilterSourceChange,
-  filterMode,
-  onFilterModeChange,
-  filterFamily,
-  onFilterFamilyChange,
-  families,
-  favorites,
-  onToggleFavorite
+  allThemes, themeNames, screen, onScreenChange, screens,
+  filterSource, onFilterSourceChange, filterMode, onFilterModeChange,
+  filterFamily, onFilterFamilyChange, families, favorites, onToggleFavorite
 }: BrowseTabProps) {
   const filtered = useMemo(() => {
     return themeNames.filter(n => {
@@ -46,26 +35,17 @@ export function BrowseTab({
   }, [themeNames, allThemes, filterSource, filterMode, filterFamily]);
 
   const filterBtn = (value: string, current: string, setter: (v: any) => void, label: string) => (
-    <button
-      key={label}
-      onClick={() => setter(value)}
-      style={{
-        padding: '4px 10px',
-        fontSize: 11,
-        cursor: 'pointer',
-        fontFamily: 'inherit',
+    <button key={label} onClick={() => setter(value)}
+      style={{ padding: '4px 10px', fontSize: 11, cursor: 'pointer', fontFamily: 'inherit',
         background: current === value ? '#3f3f46' : 'transparent',
         color: current === value ? '#fafafa' : '#71717a',
-        border: `1px solid ${current === value ? '#3f3f46' : '#27272a'}`
-      }}
-    >
+        border: `1px solid ${current === value ? '#3f3f46' : '#27272a'}` }}>
       {label}
     </button>
   );
 
   return (
     <div>
-      {/* Filters */}
       <div style={{ display: 'flex', gap: 4, marginBottom: 16, flexWrap: 'wrap' }}>
         <span style={{ fontSize: 11, color: '#52525b', alignSelf: 'center', marginRight: 4 }}>Filter:</span>
         {filterBtn('all', filterSource, onFilterSourceChange, 'All')}
@@ -82,48 +62,28 @@ export function BrowseTab({
         {filterBtn('all', filterFamily, onFilterFamilyChange, 'All families')}
         {families.map(f => filterBtn(f, filterFamily, onFilterFamilyChange, f))}
       </div>
-
-      {/* Screen selector */}
       <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
         <span style={{ fontSize: 11, color: '#52525b', alignSelf: 'center', marginRight: 4 }}>Screen:</span>
         {screens.map(s => (
-          <button
-            key={s}
-            onClick={() => onScreenChange(s)}
-            style={{
-              padding: '4px 10px',
-              fontSize: 11,
-              cursor: 'pointer',
-              fontFamily: 'inherit',
+          <button key={s} onClick={() => onScreenChange(s)}
+            style={{ padding: '4px 10px', fontSize: 11, cursor: 'pointer', fontFamily: 'inherit',
               background: screen === s ? '#a78bfa' : 'transparent',
               color: screen === s ? '#09090b' : '#71717a',
               border: `1px solid ${screen === s ? '#a78bfa' : '#27272a'}`,
-              fontWeight: screen === s ? 600 : 400
-            }}
-          >
+              fontWeight: screen === s ? 600 : 400 }}>
             {s}
           </button>
         ))}
       </div>
-
-      {/* Results count */}
       <div style={{ fontSize: 12, color: '#71717a', marginBottom: 12 }}>
         Showing {filtered.length} of {themeNames.length} themes
       </div>
-
-      {/* Theme grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(580px, 1fr))', gap: 16 }}>
         {filtered.map(name => {
           const theme = allThemes[name];
           return (
-            <ThemeCard
-              key={name}
-              name={name}
-              theme={theme}
-              screen={screen}
-              onFavorite={() => onToggleFavorite(name)}
-              isFavorite={favorites.has(name)}
-            />
+            <ThemeCard key={name} name={name} theme={theme} screen={screen}
+              onFavorite={() => onToggleFavorite(name)} isFavorite={favorites.has(name)} />
           );
         })}
       </div>
