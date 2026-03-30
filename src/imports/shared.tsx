@@ -1,12 +1,10 @@
 import type { CSSProperties, ReactNode } from "react";
 import { textOn, type ThemeColors } from "./themes";
 
-// ── Font stacks ─────────────────────────────────────────────────
 export const mono: CSSProperties = { fontFamily: "'JetBrains Mono', monospace" };
 export const display: CSSProperties = { fontFamily: "'Space Grotesk', sans-serif" };
 export const sans: CSSProperties = { fontFamily: "'Inter', system-ui, sans-serif" };
 
-// ── Style helpers ───────────────────────────────────────────────
 export function cardS(c: ThemeColors, r: number, extra?: CSSProperties): CSSProperties {
   return {
     background: c.bgEl, border: `2px solid ${c.border}`, padding: 12,
@@ -24,7 +22,6 @@ export function btnS(c: ThemeColors, r: number, primary?: boolean): CSSPropertie
   };
 }
 
-// ── Badge ───────────────────────────────────────────────────────
 export function Badge({ bg, color, children, border, r = 0 }: {
   bg: string; color: string; children: ReactNode; border?: string; r?: number;
 }) {
@@ -37,36 +34,25 @@ export function Badge({ bg, color, children, border, r = 0 }: {
   );
 }
 
-// ── PageHeader ──────────────────────────────────────────────────
 export function PageHeader({ c, r = 0, eyebrow, title, description, badges, actions }: {
   c: ThemeColors; r?: number; eyebrow: string; title: string;
   description: string; badges?: ReactNode[]; actions?: ReactNode[];
 }) {
   return (
-    <div style={{
-      border: `2px solid ${c.border}`, background: c.bgSec, padding: 16,
-      borderRadius: r, marginBottom: 16,
-    }}>
-      <div style={{ ...mono, fontSize: 10, fontWeight: 600, color: c.textMut, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4 }}>
-        {eyebrow}
-      </div>
+    <div style={{ border: `2px solid ${c.border}`, background: c.bgSec, padding: 16, borderRadius: r, marginBottom: 16 }}>
+      <div style={{ ...mono, fontSize: 10, fontWeight: 600, color: c.textMut, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4 }}>{eyebrow}</div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
         <div>
           <div style={{ ...display, fontSize: 24, fontWeight: 900, color: c.text, textTransform: "uppercase", lineHeight: 1.1 }}>{title}</div>
           <div style={{ fontSize: 12, color: c.textSec, marginTop: 4 }}>{description}</div>
-          {badges && badges.length > 0 && (
-            <div style={{ display: "flex", gap: 6, marginTop: 8 }}>{badges}</div>
-          )}
+          {badges && badges.length > 0 && <div style={{ display: "flex", gap: 6, marginTop: 8 }}>{badges}</div>}
         </div>
-        {actions && actions.length > 0 && (
-          <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>{actions}</div>
-        )}
+        {actions && actions.length > 0 && <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>{actions}</div>}
       </div>
     </div>
   );
 }
 
-// ── MetricCard ──────────────────────────────────────────────────
 export function MetricCard({ c, r = 0, label, value, hint, color }: {
   c: ThemeColors; r?: number; label: string; value: string; hint?: string; color?: string;
 }) {
@@ -82,16 +68,10 @@ export function MetricCard({ c, r = 0, label, value, hint, color }: {
   );
 }
 
-// ── MetricStrip ─────────────────────────────────────────────────
 export function MetricStrip({ children }: { children: ReactNode }) {
-  return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 8, marginBottom: 16 }}>
-      {children}
-    </div>
-  );
+  return <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 8, marginBottom: 16 }}>{children}</div>;
 }
 
-// ── SectionHeader ───────────────────────────────────────────────
 export function SectionHeader({ c, title, description, action, badge }: {
   c: ThemeColors; title: string; description?: string; action?: ReactNode; badge?: ReactNode;
 }) {
@@ -109,38 +89,24 @@ export function SectionHeader({ c, title, description, action, badge }: {
   );
 }
 
-// ── StateBlock ──────────────────────────────────────────────────
 export function StateBlock({ c, r = 0, title, description, tone }: {
-  c: ThemeColors; r?: number; title: string; description: string;
-  tone?: "muted" | "warn" | "success";
+  c: ThemeColors; r?: number; title: string; description: string; tone?: "muted" | "warn" | "success";
 }) {
   const bg = tone === "warn" ? `${c.warn}18` : tone === "success" ? `${c.suc}18` : c.bgTer;
   return (
-    <div style={{
-      border: `2px solid ${c.border}`, padding: 10, borderRadius: r, background: bg, flex: 1,
-    }}>
+    <div style={{ border: `2px solid ${c.border}`, padding: 10, borderRadius: r, background: bg, flex: 1 }}>
       <div style={{ ...mono, fontSize: 11, fontWeight: 700, color: c.text, textTransform: "uppercase" }}>{title}</div>
       <div style={{ fontSize: 10, color: c.textSec, marginTop: 2 }}>{description}</div>
     </div>
   );
 }
 
-// ── Surface ─────────────────────────────────────────────────────
 export function Surface({ c, r = 0, children, style }: {
   c: ThemeColors; r?: number; children: ReactNode; style?: CSSProperties;
 }) {
-  return (
-    <div style={{ border: `2px solid ${c.border}`, background: c.bgEl, overflow: "hidden", borderRadius: r, ...style }}>
-      {children}
-    </div>
-  );
+  return <div style={{ border: `2px solid ${c.border}`, background: c.bgEl, overflow: "hidden", borderRadius: r, ...style }}>{children}</div>;
 }
 
-// ── SplitWorkspace ──────────────────────────────────────────────
 export function SplitWorkspace({ children }: { children: ReactNode }) {
-  return (
-    <div style={{ display: "flex", gap: 12 }}>
-      {children}
-    </div>
-  );
+  return <div style={{ display: "flex", gap: 12 }}>{children}</div>;
 }
