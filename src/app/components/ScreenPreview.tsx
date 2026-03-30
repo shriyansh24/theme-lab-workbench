@@ -21,7 +21,6 @@ interface ScreenPreviewProps {
 }
 
 export function ScreenPreview({ colors, screen, radius = 0, height = 420 }: ScreenPreviewProps) {
-  // Login has no shell
   if (screen === 'Login') {
     return (
       <div style={{ height, overflow: 'hidden', ...sans }}>

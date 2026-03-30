@@ -27,7 +27,6 @@ export function ThemeCard({ name, theme, screen, onVote, score, onFavorite, isFa
 
   return (
     <div style={{ border: '2px solid #27272a', overflow: 'hidden' }}>
-      {/* Header */}
       <div style={{ padding: '8px 12px', background: '#18181b', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{ width: 12, height: 12, background: theme.colors.pri }} />
@@ -38,16 +37,10 @@ export function ThemeCard({ name, theme, screen, onVote, score, onFavorite, isFa
           {onFavorite && (
             <button
               onClick={onFavorite}
-              style={{
-                fontSize: 14,
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '2px 6px'
-              }}
+              style={{ fontSize: 14, background: 'transparent', border: 'none', cursor: 'pointer', padding: '2px 6px' }}
               title={isFavorite ? 'Unfavorite' : 'Favorite'}
             >
-              {isFavorite ? '★' : '☆'}
+              {isFavorite ? '\u2605' : '\u2606'}
             </button>
           )}
           <span style={{ fontSize: 10, padding: '2px 6px', background: sourceStyle.bg, color: sourceStyle.color }}>
@@ -58,26 +51,13 @@ export function ThemeCard({ name, theme, screen, onVote, score, onFavorite, isFa
           </span>
         </div>
       </div>
-
-      {/* Preview */}
       <ScreenPreview colors={theme.colors} screen={screen} radius={theme.radius} />
-
-      {/* Footer (if voting) */}
       {onVote !== undefined && (
         <div style={{ padding: 8, background: '#111', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{ fontFamily: 'monospace', fontSize: 12, color: '#52525b' }}>Score: {score ?? 0}</span>
           <button
             onClick={onVote}
-            style={{
-              background: theme.colors.pri,
-              color: '#fff',
-              border: '2px solid #27272a',
-              padding: '5px 16px',
-              fontSize: 11,
-              fontWeight: 700,
-              cursor: 'pointer',
-              fontFamily: 'inherit'
-            }}
+            style={{ background: theme.colors.pri, color: '#fff', border: '2px solid #27272a', padding: '5px 16px', fontSize: 11, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}
           >
             Vote
           </button>
