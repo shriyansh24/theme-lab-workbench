@@ -1,10 +1,6 @@
 import type { ThemeColors } from "./themes";
 import { textOn } from "./themes";
-import {
-  PageHeader, MetricStrip, MetricCard, SectionHeader, Badge,
-  StateBlock, Surface, SplitWorkspace, cardS, mono, display, sans,
-  btnS,
-} from "./shared";
+import { PageHeader, MetricStrip, MetricCard, SectionHeader, Badge, StateBlock, Surface, SplitWorkspace, cardS, mono, display, sans, btnS } from "./shared";
 
 export function MockAnalytics({ c, r = 0 }: { c: ThemeColors; r?: number }) {
   const sh = (extra = {}) => cardS(c, r, extra);
@@ -39,8 +35,7 @@ export function MockAnalytics({ c, r = 0 }: { c: ThemeColors; r?: number }) {
 
   return (
     <div style={{ ...sans, padding: 16, background: c.bg, minHeight: "100%" }}>
-      <PageHeader c={c} r={r} eyebrow="Intelligence" title="Analytics"
-        description="Track discovery volume, application outcomes, and response patterns."
+      <PageHeader c={c} r={r} eyebrow="Intelligence" title="Analytics" description="Track discovery volume, application outcomes, and response patterns."
         badges={[
           <Badge key="a" bg={`${c.pri}22`} color={c.pri} r={r}>Live charts</Badge>,
           <Badge key="b" bg={c.bgTer} color={c.textSec} border={c.border} r={r}>Source feed</Badge>,
@@ -52,13 +47,10 @@ export function MockAnalytics({ c, r = 0 }: { c: ThemeColors; r?: number }) {
         <MetricCard c={c} r={r} label="Response rate" value="34%" color={c.suc} />
         <MetricCard c={c} r={r} label="Avg days" value="4.2" />
       </MetricStrip>
-
       <SplitWorkspace>
-        {/* Primary */}
         <div style={{ flex: 2, display: "flex", flexDirection: "column", gap: 16 }}>
           <SectionHeader c={c} title="Trend" />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-            {/* Line chart */}
             <div style={sh()}>
               <div style={{ ...mono, fontSize: 10, color: c.textMut, marginBottom: 8 }}>JOBS SCRAPED (LAST 30 DAYS)</div>
               <div style={{ display: "flex", alignItems: "flex-end", gap: 4, height: 60 }}>
@@ -72,7 +64,6 @@ export function MockAnalytics({ c, r = 0 }: { c: ThemeColors; r?: number }) {
                 {["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map(m => <span key={m}>{m}</span>)}
               </div>
             </div>
-            {/* Funnel */}
             <div style={sh()}>
               <div style={{ ...mono, fontSize: 10, color: c.textMut, marginBottom: 8 }}>APPLICATION FUNNEL</div>
               <div style={{ display: "flex", alignItems: "flex-end", gap: 8, height: 60 }}>
@@ -84,7 +75,6 @@ export function MockAnalytics({ c, r = 0 }: { c: ThemeColors; r?: number }) {
                 ))}
               </div>
             </div>
-            {/* Pie (stacked bar) */}
             <div style={sh()}>
               <div style={{ ...mono, fontSize: 10, color: c.textMut, marginBottom: 8 }}>JOBS BY SOURCE</div>
               <div style={{ display: "flex", height: 16, borderRadius: r > 0 ? 4 : 0, overflow: "hidden" }}>
@@ -98,7 +88,6 @@ export function MockAnalytics({ c, r = 0 }: { c: ThemeColors; r?: number }) {
                 ))}
               </div>
             </div>
-            {/* Skills bar */}
             <div style={sh()}>
               <div style={{ ...mono, fontSize: 10, color: c.textMut, marginBottom: 8 }}>TOP SKILLS REQUESTED</div>
               {skills.map((s, i) => (
@@ -111,7 +100,6 @@ export function MockAnalytics({ c, r = 0 }: { c: ThemeColors; r?: number }) {
               ))}
             </div>
           </div>
-
           <SectionHeader c={c} title="Application patterns" />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 8 }}>
             {patterns.map(p => (
@@ -121,14 +109,11 @@ export function MockAnalytics({ c, r = 0 }: { c: ThemeColors; r?: number }) {
               </div>
             ))}
           </div>
-
           <SectionHeader c={c} title="Skills pulse" />
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
             {pulse.map(s => <Badge key={s} bg={`${c.pri}18`} color={c.pri} r={r}>{s}</Badge>)}
           </div>
         </div>
-
-        {/* Secondary */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
           <div style={sh({ background: `${c.suc}18` })}>
             <div style={{ ...mono, fontSize: 9, color: c.textMut, textTransform: "uppercase" }}>Interviews</div>
@@ -138,7 +123,6 @@ export function MockAnalytics({ c, r = 0 }: { c: ThemeColors; r?: number }) {
             <div style={{ ...mono, fontSize: 9, color: c.textMut, textTransform: "uppercase" }}>Offers</div>
             <div style={{ ...mono, fontSize: 22, fontWeight: 700, color: c.warn }}>1</div>
           </div>
-
           <SectionHeader c={c} title="Source quality" />
           <Surface c={c} r={r}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 10 }}>
